@@ -464,6 +464,7 @@ section { padding: 100px 5%; position: relative; }
   background: linear-gradient(135deg, rgba(0,229,255,0.06) 0%, transparent 55%);
   opacity: 0;
   transition: opacity .3s;
+  pointer-events: none;
 }
 .pcard:hover {
   border-color: var(--cyan);
@@ -504,7 +505,7 @@ section { padding: 100px 5%; position: relative; }
 .pdesc { font-size: .83rem; color: var(--muted); line-height: 1.55; margin-bottom: .7rem; flex: 1; }
 .pmeta { font-family: var(--font-head); font-size: .48rem; letter-spacing: 2px; color: #374151; text-transform: uppercase; margin-bottom: .85rem; }
 .pmeta span { color: var(--muted); }
-.store-links { display: flex; gap: .45rem; flex-wrap: wrap; margin-top: auto; }
+.store-links { display: flex; gap: .45rem; flex-wrap: wrap; margin-top: auto; position: relative; z-index: 5; }
 .sbtn {
   display: inline-flex;
   align-items: center;
@@ -513,17 +514,23 @@ section { padding: 100px 5%; position: relative; }
   font-size: .46rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  text-decoration: none;
-  padding: 5px 10px;
+  text-decoration: none !important;
+  padding: 6px 12px;
   border-radius: 2px;
-  transition: all .25s;
+  transition: background .25s, box-shadow .25s;
   line-height: 1;
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 5;
+  -webkit-user-select: none;
+  user-select: none;
 }
-.sbtn-ps { background: rgba(52,211,153,.1); border: 1px solid rgba(52,211,153,.3); color: var(--green); }
-.sbtn-ps:hover { background: rgba(52,211,153,.2); box-shadow: 0 0 10px rgba(52,211,153,.25); }
-.sbtn-as { background: rgba(147,197,253,.1); border: 1px solid rgba(147,197,253,.28); color: var(--blue); }
-.sbtn-as:hover { background: rgba(147,197,253,.2); box-shadow: 0 0 10px rgba(147,197,253,.22); }
-.sbtn svg { flex-shrink: 0; }
+.sbtn-ps { background: rgba(52,211,153,.12); border: 1px solid rgba(52,211,153,.35); color: #34d399; }
+.sbtn-ps:hover { background: rgba(52,211,153,.28); box-shadow: 0 0 14px rgba(52,211,153,.3); color: #34d399; }
+.sbtn-as { background: rgba(147,197,253,.12); border: 1px solid rgba(147,197,253,.32); color: #93c5fd; }
+.sbtn-as:hover { background: rgba(147,197,253,.28); box-shadow: 0 0 14px rgba(147,197,253,.28); color: #93c5fd; }
+.sbtn svg { flex-shrink: 0; pointer-events: none; }
 .soon { font-family: var(--font-head); font-size: .44rem; letter-spacing: 1px; color: #374151; padding: 5px 0; }
 
 /* ── ACHIEVEMENTS ── */
@@ -917,251 +924,216 @@ footer {
     </div>
     <div class="pgrid">
 
-      <!-- 1 -->
+      <!-- PS/AS SVG helpers defined inline per card -->
+
+      <!-- 1. Green Gold TV Live Stream (FIRST) -->
       <div class="pcard reveal">
-        <div class="pcard-head">
-          <h3 class="pname">Learn With Bheem</h3>
-          <span class="tbadge be">Educational</span>
+        <div class="pcard-head"><h3 class="pname">Green Gold TV Live Stream</h3><span class="tbadge bn">Entertainment</span></div>
+        <p class="pdesc">Official Green Gold Animation streaming app — live TV, episodes, and exclusive content for Bheem fans worldwide.</p>
+        <p class="pmeta">Streaming App &nbsp;·&nbsp; <span>Tigris Entertainment</span></p>
+        <div class="store-links">
+          <a href="https://play.google.com/store/apps/details?id=com.greengold.greengoldfast&hl=en_IN" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
+          <a href="https://apps.apple.com/in/app/green-gold-tv-live-stream-app/id6749145763" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
         </div>
+      </div>
+
+      <!-- 2. Learn With Bheem (SECOND) -->
+      <div class="pcard reveal" style="transition-delay:.05s">
+        <div class="pcard-head"><h3 class="pname">Learn With Bheem</h3><span class="tbadge be">Educational</span></div>
         <p class="pdesc">Kids educational game blending fun 2D gameplay with curriculum-aligned learning challenges.</p>
         <p class="pmeta">2D Game &nbsp;·&nbsp; <span>Team of 4</span></p>
         <div class="store-links">
-          <a href="https://play.google.com/store/apps/details?id=com.greengold.learnwithbheem&hl=en_IN" target="_blank" rel="noopener" class="sbtn sbtn-ps">
-            <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>
-            Play Store
-          </a>
-          <a href="https://apps.apple.com/in/app/learn-with-bheem-kids-app/id6742449857" target="_blank" rel="noopener" class="sbtn sbtn-as">
-            <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            App Store
-          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.greengold.learnwithbheem" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
+          <a href="https://apps.apple.com/in/app/learn-with-bheem-kids-app/id6742449857" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
         </div>
       </div>
 
-      <!-- 2 -->
-      <div class="pcard reveal" style="transition-delay:.05s">
-        <div class="pcard-head">
-          <h3 class="pname">Bheem Vs Super Villains</h3>
-          <span class="tbadge bg">2D Game</span>
+      <!-- 3. Chhota Bheem Hexa Sort (THIRD) -->
+      <div class="pcard reveal" style="transition-delay:.1s">
+        <div class="pcard-head"><h3 class="pname">Chhota Bheem Hexa Sort</h3><span class="tbadge bg">Casual Game</span></div>
+        <p class="pdesc">Fun hexa-sorting casual puzzle game — stack and sort colourful hexagons in Bheem's world.</p>
+        <p class="pmeta">Casual / Puzzle &nbsp;·&nbsp; <span>Tigris Entertainment</span></p>
+        <div class="store-links">
+          <a href="https://play.google.com/store/apps/details?id=com.greengold.chhotabheemhexasort" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
+          <a href="https://apps.apple.com/in/app/chhota-bheem-hexa-sort/id6751716350" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
         </div>
+      </div>
+
+      <!-- 4. Bheem Vs Super Villains -->
+      <div class="pcard reveal">
+        <div class="pcard-head"><h3 class="pname">Bheem Vs Super Villains</h3><span class="tbadge bg">2D Game</span></div>
         <p class="pdesc">High-energy action game pitting Bheem against iconic villains with dynamic combat mechanics.</p>
         <p class="pmeta">2D Action &nbsp;·&nbsp; <span>Team of 2</span></p>
         <div class="store-links">
-          <a href="https://play.google.com/store/apps/details?id=com.greengold.HeroAdventures" target="_blank" rel="noopener" class="sbtn sbtn-ps">
-            <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>
-            Play Store
-          </a>
-          <a href="https://apps.apple.com/in/app/bheem-vs-super-villains/id6447617859" target="_blank" rel="noopener" class="sbtn sbtn-as">
-            <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            App Store
-          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.greengold.HeroAdventures" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
+          <a href="https://apps.apple.com/in/app/bheem-vs-super-villains/id6447617859" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
         </div>
       </div>
 
-      <!-- 3 -->
-      <div class="pcard reveal" style="transition-delay:.1s">
-        <div class="pcard-head">
-          <h3 class="pname">Bheem Galaxy Rush</h3>
-          <span class="tbadge bg">2D Game</span>
-        </div>
+      <!-- 5. Bheem Galaxy Rush -->
+      <div class="pcard reveal" style="transition-delay:.05s">
+        <div class="pcard-head"><h3 class="pname">Bheem Galaxy Rush</h3><span class="tbadge bg">2D Game</span></div>
         <p class="pdesc">Endless adventure game with fast-paced progression and galactic-themed environments.</p>
         <p class="pmeta">2D Adventure &nbsp;·&nbsp; <span>Team of 2</span></p>
         <div class="store-links">
-          <a href="https://play.google.com/store/apps/details?id=com.greengold.sbgalaxyrush" target="_blank" rel="noopener" class="sbtn sbtn-ps">
-            <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>
-            Play Store
-          </a>
-          <a href="https://apps.apple.com/in/app/bheem-galaxy-rush/id6444507771" target="_blank" rel="noopener" class="sbtn sbtn-as">
-            <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            App Store
-          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.greengold.sbgalaxyrush" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
+          <a href="https://apps.apple.com/in/app/bheem-galaxy-rush/id6444507771" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
         </div>
       </div>
 
-      <!-- 4 -->
-      <div class="pcard reveal">
-        <div class="pcard-head">
-          <h3 class="pname">Chhota Bheem Vs Kirmada</h3>
-          <span class="tbadge bg">3D Game</span>
-        </div>
+      <!-- 6. Chhota Bheem Vs Kirmada -->
+      <div class="pcard reveal" style="transition-delay:.1s">
+        <div class="pcard-head"><h3 class="pname">Chhota Bheem Vs Kirmada</h3><span class="tbadge bg">3D Game</span></div>
         <p class="pdesc">Full 3D third-person shooter — the most technically ambitious title in the Bheem franchise.</p>
         <p class="pmeta">3D Shooter &nbsp;·&nbsp; <span>Team of 2</span></p>
-        <div class="store-links"><span class="soon">Store links coming soon</span></div>
+        <div class="store-links">
+          <a href="https://play.google.com/store/apps/details?id=com.greengold.ShooterBheem" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
+          <a href="https://apps.apple.com/in/app/chhota-bheem-vs-kirmada/id1548254634" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+        </div>
       </div>
 
-      <!-- 5 -->
-      <div class="pcard reveal" style="transition-delay:.05s">
-        <div class="pcard-head">
-          <h3 class="pname">Shoot The Leyaks</h3>
-          <span class="tbadge bg">2D Game</span>
-        </div>
+      <!-- 7. Shoot The Leyaks -->
+      <div class="pcard reveal">
+        <div class="pcard-head"><h3 class="pname">Shoot The Leyaks</h3><span class="tbadge bg">2D Game</span></div>
         <p class="pdesc">Precision arrow shooting game with enemy wave mechanics and escalating power-ups.</p>
         <p class="pmeta">2D Shooting &nbsp;·&nbsp; <span>Team of 2</span></p>
-        <div class="store-links"><span class="soon">Store links coming soon</span></div>
+        <div class="store-links">
+          <a href="https://play.google.com/store/apps/details?id=com.greengold.ShootLayeks" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
+          <a href="https://apps.apple.com/in/app/chhota-bheem-archery-in-mexico/id1619295155" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+        </div>
       </div>
 
-      <!-- 6 -->
-      <div class="pcard reveal" style="transition-delay:.1s">
-        <div class="pcard-head">
-          <h3 class="pname">Play With Mighty Little Bheem</h3>
-          <span class="tbadge be">Educational</span>
-        </div>
+      <!-- 8. Play With Mighty Little Bheem -->
+      <div class="pcard reveal" style="transition-delay:.05s">
+        <div class="pcard-head"><h3 class="pname">Play With Mighty Little Bheem</h3><span class="tbadge be">Educational</span></div>
         <p class="pdesc">Toddler-friendly entertainment and learning app based on the Netflix original series.</p>
         <p class="pmeta">2D Entertainment &nbsp;·&nbsp; <span>Team of 2</span></p>
-        <div class="store-links"><span class="soon">Store links coming soon</span></div>
+        <div class="store-links">
+          <a href="https://play.google.com/store/apps/details?id=com.GreenGoldAnimationPvtLtd.MasterApp" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
+          <a href="https://apps.apple.com/in/app/play-with-mighty-little-bheem/id1543145665" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+        </div>
       </div>
 
-      <!-- 7 -->
-      <div class="pcard reveal">
-        <div class="pcard-head">
-          <h3 class="pname">MLB Color and Puzzles</h3>
-          <span class="tbadge be">Educational</span>
-        </div>
+      <!-- 9. MLB Color and Puzzles -->
+      <div class="pcard reveal" style="transition-delay:.1s">
+        <div class="pcard-head"><h3 class="pname">MLB Color and Puzzles</h3><span class="tbadge be">Educational</span></div>
         <p class="pdesc">Coloring and puzzle game combining creativity with cognitive skill-building for young players.</p>
         <p class="pmeta">2D Educational &nbsp;·&nbsp; <span>Team of 2</span></p>
-        <div class="store-links"><span class="soon">Store links coming soon</span></div>
+        <div class="store-links">
+          <a href="https://play.google.com/store/apps/details?id=com.greengold.mlbcp" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
+          <a href="https://apps.apple.com/in/app/mlb-color-and-puzzles/id1543152209" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+        </div>
       </div>
 
-      <!-- 8 -->
-      <div class="pcard reveal" style="transition-delay:.05s">
-        <div class="pcard-head">
-          <h3 class="pname">SB Laddoo Quest</h3>
-          <span class="tbadge bg">2D Game</span>
-        </div>
-        <p class="pdesc">Casual catching game with escalating difficulty — complete solo build from mechanics to deployment.</p>
-        <p class="pmeta">2D Casual &nbsp;·&nbsp; <span>Solo</span></p>
-        <div class="store-links"><span class="soon">Store links coming soon</span></div>
-      </div>
-
-      <!-- 9 -->
-      <div class="pcard reveal" style="transition-delay:.1s">
-        <div class="pcard-head">
-          <h3 class="pname">CB Himalayan Adventure</h3>
-          <span class="tbadge bn">Entertainment</span>
-        </div>
+      <!-- 10. CB Himalayan Adventure -->
+      <div class="pcard reveal">
+        <div class="pcard-head"><h3 class="pname">CB Himalayan Adventure</h3><span class="tbadge bn">Entertainment</span></div>
         <p class="pdesc">Movie companion app with interactive learning content tied to the Chhota Bheem film.</p>
         <p class="pmeta">Movie App &nbsp;·&nbsp; <span>Solo</span></p>
-        <div class="store-links"><span class="soon">Store links coming soon</span></div>
+        <div class="store-links">
+          <a href="https://apps.apple.com/in/app/chhota-bheem-himalayan-adventure/id1055319632" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+        </div>
       </div>
 
-      <!-- 10 -->
-      <div class="pcard reveal">
-        <div class="pcard-head">
-          <h3 class="pname">Chhota Piano</h3>
-          <span class="tbadge bn">Entertainment</span>
-        </div>
+      <!-- 11. Chhota Piano -->
+      <div class="pcard reveal" style="transition-delay:.05s">
+        <div class="pcard-head"><h3 class="pname">Chhota Piano</h3><span class="tbadge bn">Entertainment</span></div>
         <p class="pdesc">Interactive musical instrument app for children with Bheem-themed sounds and melodies.</p>
         <p class="pmeta">Musical App &nbsp;·&nbsp; <span>Solo</span></p>
-        <div class="store-links"><span class="soon">Store links coming soon</span></div>
+        <div class="store-links">
+          <a href="https://apps.apple.com/in/app/chhota-piano/id1145806463" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+        </div>
       </div>
 
-      <!-- 11 -->
-      <div class="pcard reveal" style="transition-delay:.05s">
-        <div class="pcard-head">
-          <h3 class="pname">Chhota Bheem Shop</h3>
-          <span class="tbadge bc">E-Commerce</span>
-        </div>
+      <!-- 12. Chhota Bheem Shop -->
+      <div class="pcard reveal" style="transition-delay:.1s">
+        <div class="pcard-head"><h3 class="pname">Chhota Bheem Shop</h3><span class="tbadge bc">E-Commerce</span></div>
         <p class="pdesc">Full-featured e-commerce mobile app for the Bheem merchandise ecosystem. Solo end-to-end build.</p>
         <p class="pmeta">E-Commerce &nbsp;·&nbsp; <span>Solo</span></p>
-        <div class="store-links"><span class="soon">Store links coming soon</span></div>
+        <div class="store-links">
+          <a href="https://apps.apple.com/in/app/chhota-bheem-shop/id1026745370" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+        </div>
       </div>
 
-      <!-- 12 -->
-      <div class="pcard reveal" style="transition-delay:.1s">
-        <div class="pcard-head">
-          <h3 class="pname">Quiz Like KBC With Bheem</h3>
-          <span class="tbadge be">Educational</span>
-        </div>
+      <!-- 13. Quiz Like KBC With Bheem -->
+      <div class="pcard reveal">
+        <div class="pcard-head"><h3 class="pname">Quiz Like KBC With Bheem</h3><span class="tbadge be">Educational</span></div>
         <p class="pdesc">KBC-style trivia quiz app with lifelines, point multipliers, and Bheem-universe questions.</p>
         <p class="pmeta">Educational &nbsp;·&nbsp; <span>Solo</span></p>
-        <div class="store-links"><span class="soon">Store links coming soon</span></div>
+        <div class="store-links">
+          <a href="https://play.google.com/store/apps/details?id=com.greengold.chhotabheemquizgame" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
+          <a href="https://apps.apple.com/in/app/quiz-like-kbc-with-bheem/id944866423" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+        </div>
       </div>
 
-      <!-- 13 -->
-      <div class="pcard reveal">
-        <div class="pcard-head">
-          <h3 class="pname">Word Puzzles With Bheem</h3>
-          <span class="tbadge be">Educational</span>
-        </div>
+      <!-- 14. Word Puzzles With Bheem -->
+      <div class="pcard reveal" style="transition-delay:.05s">
+        <div class="pcard-head"><h3 class="pname">Word Puzzles With Bheem</h3><span class="tbadge be">Educational</span></div>
         <p class="pdesc">Word-building puzzle game developing vocabulary and spelling skills for young learners.</p>
         <p class="pmeta">Puzzle App &nbsp;·&nbsp; <span>Solo</span></p>
-        <div class="store-links"><span class="soon">Store links coming soon</span></div>
+        <div class="store-links">
+          <a href="https://apps.apple.com/in/app/word-puzzles-with-bheem/id929979522" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+        </div>
       </div>
 
-      <!-- 14 -->
-      <div class="pcard reveal" style="transition-delay:.05s">
-        <div class="pcard-head">
-          <h3 class="pname">Sliding Puzzles With Bheem</h3>
-          <span class="tbadge be">Educational</span>
-        </div>
+      <!-- 15. Sliding Puzzles With Bheem -->
+      <div class="pcard reveal" style="transition-delay:.1s">
+        <div class="pcard-head"><h3 class="pname">Sliding Puzzles With Bheem</h3><span class="tbadge be">Educational</span></div>
         <p class="pdesc">Classic tile-slide puzzle mechanics with Bheem imagery and increasing difficulty levels.</p>
         <p class="pmeta">Puzzle App &nbsp;·&nbsp; <span>Solo</span></p>
-        <div class="store-links"><span class="soon">Store links coming soon</span></div>
+        <div class="store-links">
+          <a href="https://apps.apple.com/in/app/sliding-puzzle-with-bheem/id979556764" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+        </div>
       </div>
 
-      <!-- 15 -->
-      <div class="pcard reveal" style="transition-delay:.1s">
-        <div class="pcard-head">
-          <h3 class="pname">Quick Math With Bheem</h3>
-          <span class="tbadge be">Educational</span>
-        </div>
+      <!-- 16. Quick Math With Bheem -->
+      <div class="pcard reveal">
+        <div class="pcard-head"><h3 class="pname">Quick Math With Bheem</h3><span class="tbadge be">Educational</span></div>
         <p class="pdesc">Timed arithmetic challenges designed to build mental math speed in a fun gamified format.</p>
         <p class="pmeta">Educational &nbsp;·&nbsp; <span>Solo</span></p>
-        <div class="store-links"><span class="soon">Store links coming soon</span></div>
-      </div>
-
-      <!-- 16 -->
-      <div class="pcard reveal">
-        <div class="pcard-head">
-          <h3 class="pname">Learn Colors With Bheem</h3>
-          <span class="tbadge be">Educational</span>
+        <div class="store-links">
+          <a href="https://apps.apple.com/in/app/quick-math-with-bheem/id944225790" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
         </div>
-        <p class="pdesc">Early childhood color recognition using interactive animations and audio-visual reinforcement.</p>
-        <p class="pmeta">Educational &nbsp;·&nbsp; <span>Solo</span></p>
-        <div class="store-links"><span class="soon">Store links coming soon</span></div>
       </div>
 
-      <!-- 17 -->
+      <!-- 17. Christmas With Bheem -->
       <div class="pcard reveal" style="transition-delay:.05s">
-        <div class="pcard-head">
-          <h3 class="pname">Christmas With Bheem</h3>
-          <span class="tbadge bn">Entertainment</span>
-        </div>
+        <div class="pcard-head"><h3 class="pname">Christmas With Bheem</h3><span class="tbadge bn">Entertainment</span></div>
         <p class="pdesc">Festive seasonal entertainment app with holiday-themed mini activities and surprises.</p>
         <p class="pmeta">Entertainment &nbsp;·&nbsp; <span>Solo</span></p>
-        <div class="store-links"><span class="soon">Store links coming soon</span></div>
+        <div class="store-links">
+          <a href="https://apps.apple.com/in/app/christmas-with-bheem/id1187675817" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+        </div>
       </div>
 
-      <!-- 18 -->
+      <!-- 18. Learn Hindi Alphabets -->
       <div class="pcard reveal" style="transition-delay:.1s">
-        <div class="pcard-head">
-          <h3 class="pname">Learn Hindi Alphabets</h3>
-          <span class="tbadge be">Educational</span>
-        </div>
+        <div class="pcard-head"><h3 class="pname">Learn Hindi Alphabets</h3><span class="tbadge be">Educational</span></div>
         <p class="pdesc">Hindi alphabet learning with audio pronunciation, tracing, and character recognition games.</p>
         <p class="pmeta">Educational &nbsp;·&nbsp; <span>Solo</span></p>
-        <div class="store-links"><span class="soon">Store links coming soon</span></div>
+        <div class="store-links">
+          <a href="https://apps.apple.com/in/app/learn-and-write-hindi-alphabets-with-bheem/id957116766" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+        </div>
       </div>
 
-      <!-- 19 -->
+      <!-- 19. CB Diwali Dhamaka -->
       <div class="pcard reveal">
-        <div class="pcard-head">
-          <h3 class="pname">CB Diwali Dhamaka</h3>
-          <span class="tbadge bn">Entertainment</span>
-        </div>
+        <div class="pcard-head"><h3 class="pname">CB Diwali Dhamaka</h3><span class="tbadge bn">Entertainment</span></div>
         <p class="pdesc">Festive Diwali app with virtual firecracker experiences and celebratory animations.</p>
         <p class="pmeta">Entertainment &nbsp;·&nbsp; <span>Solo</span></p>
-        <div class="store-links"><span class="soon">Store links coming soon</span></div>
+        <div class="store-links">
+          <a href="https://apps.apple.com/in/app/chhota-bheem-diwali-dhamaka/id1297874718" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+        </div>
       </div>
 
-      <!-- 20 -->
+      <!-- 20. Chhota Bheem 2048 -->
       <div class="pcard reveal" style="transition-delay:.05s">
-        <div class="pcard-head">
-          <h3 class="pname">Chhota Bheem 2048</h3>
-          <span class="tbadge bg">2D Game</span>
-        </div>
+        <div class="pcard-head"><h3 class="pname">Chhota Bheem 2048</h3><span class="tbadge bg">2D Game</span></div>
         <p class="pdesc">Addictive tile-merging puzzle with Bheem theming and smooth swipe mechanics.</p>
         <p class="pmeta">Puzzle Game &nbsp;·&nbsp; <span>Solo</span></p>
-        <div class="store-links"><span class="soon">Store links coming soon</span></div>
+        <div class="store-links">
+          <a href="https://apps.apple.com/in/app/chhota-bheem-2048-game/id972047636" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+        </div>
       </div>
 
       <!-- 21 -->
@@ -1188,7 +1160,7 @@ footer {
     </div>
     <div class="stats-row">
       <div class="scard reveal"><div class="snum" data-target="11">0</div><div class="slbl2">Years Experience</div></div>
-      <div class="scard reveal" style="transition-delay:.08s"><div class="snum" data-target="20">0</div><div class="slbl2">Projects Shipped</div></div>
+      <div class="scard reveal" style="transition-delay:.08s"><div class="snum" data-target="22">0</div><div class="slbl2">Projects Shipped</div></div>
       <div class="scard reveal" style="transition-delay:.16s"><div class="snum" data-target="2">0</div><div class="slbl2">Companies</div></div>
       <div class="scard reveal" style="transition-delay:.24s"><div class="snum" data-target="6">0</div><div class="slbl2">Platforms Supported</div></div>
     </div>
