@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Srinivas Jagata — Senior Unity Developer</title>
+<title>Srinivas Jagata — Senior Unity Game Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
@@ -65,6 +65,10 @@ body {
   will-change: transform;
 }
 body:hover #cursor-dot { opacity: 1; }
+@media (pointer: coarse), (max-width: 768px) {
+  #cursor-dot,
+  #cursor-ring { display: none; }
+}
 
 /* ── NAV ── */
 nav {
@@ -441,6 +445,14 @@ section { padding: 100px 5%; position: relative; }
 
 /* ── PROJECTS ── */
 #projects { background: var(--bg3); }
+.project-kicker {
+  max-width: 780px;
+  margin: -1.9rem 0 2rem;
+  color: var(--muted);
+  font-size: .95rem;
+  line-height: 1.75;
+}
+.project-kicker strong { color: var(--white); }
 .pgrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -456,6 +468,7 @@ section { padding: 100px 5%; position: relative; }
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  min-height: 100%;
 }
 .pcard::before {
   content: '';
@@ -472,6 +485,159 @@ section { padding: 100px 5%; position: relative; }
   transform: perspective(600px) rotateX(-1.5deg) rotateY(1.5deg) translateY(-4px);
 }
 .pcard:hover::before { opacity: 1; }
+.pcard.has-video {
+  border-color: rgba(255,75,95,.28);
+  background:
+    linear-gradient(135deg, rgba(255,75,95,.08), transparent 44%),
+    rgba(255,255,255,0.045);
+}
+.pcard.has-video::after {
+  content: 'Playable demo';
+  position: absolute;
+  top: .7rem;
+  right: .7rem;
+  z-index: 5;
+  font-family: var(--font-head);
+  font-size: .42rem;
+  letter-spacing: 1.5px;
+  color: #ff6b81;
+  border: 1px solid rgba(255,75,95,.34);
+  background: rgba(255,75,95,.1);
+  padding: 3px 7px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.pcard.has-video:hover {
+  border-color: rgba(255,75,95,.55);
+  box-shadow: 0 0 32px rgba(255,75,95,.16), 0 0 70px rgba(0,229,255,.08);
+}
+.pmedia {
+  position: relative;
+  z-index: 3;
+  margin: -1.5rem -1.5rem 1.15rem;
+  aspect-ratio: 16 / 9;
+  background: radial-gradient(circle at 50% 45%, rgba(255,75,95,.18), rgba(0,229,255,.06) 42%, rgba(0,0,0,.25));
+  border-bottom: 1px solid rgba(255,75,95,.26);
+  overflow: hidden;
+}
+.pmedia::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10,10,15,.08), rgba(10,10,15,.38)),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 4px);
+  pointer-events: none;
+  z-index: 2;
+}
+.video-thumb {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  display: block;
+  position: relative;
+  cursor: pointer;
+  background: #11131b;
+  overflow: hidden;
+}
+.video-thumb img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform .35s ease, filter .35s ease;
+}
+.video-thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.38));
+  z-index: 1;
+}
+.video-thumb:hover img {
+  transform: scale(1.06);
+  filter: saturate(1.15) contrast(1.08);
+}
+.play-icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 58px;
+  height: 42px;
+  border-radius: 12px;
+  transform: translate(-50%, -50%);
+  background: #ff0033;
+  box-shadow: 0 0 22px rgba(255,0,51,.42);
+  z-index: 3;
+}
+.play-icon::before {
+  content: '';
+  position: absolute;
+  left: 23px;
+  top: 12px;
+  border-left: 15px solid #fff;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+}
+.watch-label {
+  position: absolute;
+  left: 12px;
+  bottom: 11px;
+  z-index: 3;
+  font-family: var(--font-head);
+  font-size: .48rem;
+  letter-spacing: 1.5px;
+  color: var(--white);
+  background: rgba(10,10,15,.7);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 2px;
+  padding: 5px 8px;
+  text-transform: uppercase;
+}
+.pmedia iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+  position: relative;
+  z-index: 1;
+}
+.pmedia-static {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(0,229,255,.18), transparent 34%),
+    linear-gradient(135deg, rgba(0,229,255,.12), rgba(255,184,0,.055) 52%, rgba(255,75,95,.08));
+  border-bottom-color: rgba(0,229,255,.22);
+}
+.pmedia-static::after {
+  content: attr(data-label);
+  position: relative;
+  z-index: 3;
+  font-family: var(--font-head);
+  font-size: clamp(1.35rem, 3vw, 2.5rem);
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: rgba(240,244,255,.9);
+  text-shadow: 0 0 24px rgba(0,229,255,.38);
+}
+.pmedia-static .watch-label {
+  color: var(--cyan);
+  border-color: rgba(0,229,255,.24);
+  background: rgba(10,10,15,.72);
+}
+.pcard.has-video .pcard-head,
+.pcard.has-video .pdesc,
+.pcard.has-video .pmeta,
+.pcard.has-video .ptech,
+.pcard.has-video .store-links {
+  position: relative;
+  z-index: 4;
+}
 .pcard-head {
   display: flex;
   justify-content: space-between;
@@ -505,6 +671,23 @@ section { padding: 100px 5%; position: relative; }
 .pdesc { font-size: .83rem; color: var(--muted); line-height: 1.55; margin-bottom: .7rem; flex: 1; }
 .pmeta { font-family: var(--font-head); font-size: .48rem; letter-spacing: 2px; color: #374151; text-transform: uppercase; margin-bottom: .85rem; }
 .pmeta span { color: var(--muted); }
+.ptech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .38rem;
+  margin: -.25rem 0 .9rem;
+}
+.ptech span {
+  font-family: var(--font-head);
+  font-size: .43rem;
+  letter-spacing: 1px;
+  color: rgba(240,244,255,.76);
+  border: 1px solid rgba(0,229,255,.18);
+  background: rgba(0,229,255,.055);
+  border-radius: 2px;
+  padding: 4px 7px;
+  text-transform: uppercase;
+}
 .store-links { display: flex; gap: .45rem; flex-wrap: wrap; margin-top: auto; position: relative; z-index: 5; }
 .sbtn {
   display: inline-flex;
@@ -530,6 +713,8 @@ section { padding: 100px 5%; position: relative; }
 .sbtn-ps:hover { background: rgba(52,211,153,.28); box-shadow: 0 0 14px rgba(52,211,153,.3); color: #34d399; }
 .sbtn-as { background: rgba(147,197,253,.12); border: 1px solid rgba(147,197,253,.32); color: #93c5fd; }
 .sbtn-as:hover { background: rgba(147,197,253,.28); box-shadow: 0 0 14px rgba(147,197,253,.28); color: #93c5fd; }
+.sbtn-yt { background: rgba(255,75,95,.13); border: 1px solid rgba(255,75,95,.36); color: #ff6b81; }
+.sbtn-yt:hover { background: rgba(255,75,95,.27); box-shadow: 0 0 16px rgba(255,75,95,.28); color: #ff8b9c; }
 .sbtn svg { flex-shrink: 0; pointer-events: none; }
 .soon { font-family: var(--font-head); font-size: .44rem; letter-spacing: 1px; color: #374151; padding: 5px 0; }
 
@@ -732,11 +917,11 @@ footer {
   <div class="hero-content">
     <p class="hero-eyebrow">// Portfolio 2026</p>
     <h1 class="hero-name">SRINIVAS<br><span class="accent">JAGATA</span></h1>
-    <p class="hero-subtitle">Senior Unity Developer &amp; Team Lead &nbsp;|&nbsp; 11 Years Experience</p>
+    <p class="hero-subtitle">Senior Unity Game Developer &amp; Team Lead &nbsp;|&nbsp; 7+ Years Unity / 12+ Years Total</p>
     <div class="typewriter-wrap">
       <span id="typewriter"></span><span class="blink"></span>
     </div>
-    <p class="hero-tagline">"Crafting Immersive Game Experiences — From 2D Mobile to 3D Worlds &amp; AR"</p>
+    <p class="hero-tagline">"Building performant gameplay systems, smooth mobile experiences, and scalable Unity games."</p>
     <div class="hero-cta">
       <a href="#projects" class="btn btn-primary">View My Games</a>
       <a href="#contact" class="btn btn-outline">Contact Me</a>
@@ -744,8 +929,8 @@ footer {
     <div class="floating-badges">
       <span class="fbadge" style="--dur:3.2s;--dl:0s">Unity</span>
       <span class="fbadge" style="--dur:3.8s;--dl:.4s">C#</span>
-      <span class="fbadge" style="--dur:3s;--dl:.2s">iOS</span>
-      <span class="fbadge" style="--dur:4s;--dl:.7s">Android</span>
+      <span class="fbadge" style="--dur:3s;--dl:.2s">Object Pooling</span>
+      <span class="fbadge" style="--dur:4s;--dl:.7s">Firebase</span>
       <span class="fbadge" style="--dur:3.5s;--dl:.3s">AR Foundation</span>
     </div>
   </div>
@@ -790,21 +975,21 @@ footer {
       </div>
       <div class="reveal" style="transition-delay:.15s">
         <div class="about-text">
-          <p><strong>11 years deep in the engine.</strong> From native iOS to Unity — I've built games and apps that have entertained, educated, and engaged millions of players across mobile platforms.</p>
-          <p>At <strong>Tigris Entertainment</strong> for over 10 years, I grew from junior developer to Senior Developer and Team Lead, shipping <strong>20+ games and apps</strong> featuring beloved Indian IP. Game mechanics, performance pipelines, code reviews, team mentoring — while staying hands-on with the code that ships.</p>
-          <p>My sweet spot: <strong>Unity + C#</strong>, mobile-first thinking, and a relentless drive to make things feel good to play.</p>
+          <p><strong>12+ years in mobile and game development.</strong> I bring 7+ years of focused Unity experience across 2D/3D gameplay, mobile performance, and production-ready game systems.</p>
+          <p>At <strong>Tigris Entertainment</strong>, I work as a Senior Developer / Team Lead, shipping <strong>15+ games and apps</strong> across Android, iOS, and TV platforms while staying hands-on with C#, Unity, Swift, Objective-C, code reviews, and deployments.</p>
+          <p>My strongest value is practical Unity engineering: improving FPS from <strong>~40 to 60</strong> on low-end devices, handling <strong>100+ active objects</strong> through pooling, and reducing memory usage by <strong>~20-30%</strong>.</p>
         </div>
         <div class="hcards">
-          <div class="hcard"><div class="ico">🎮</div><div class="lbl">Published</div><div class="val">20+ Games</div></div>
-          <div class="hcard"><div class="ico">⚡</div><div class="lbl">At Tigris</div><div class="val">10.5 Yrs</div></div>
-          <div class="hcard"><div class="ico">🧊</div><div class="lbl">Expertise</div><div class="val">2D &amp; 3D</div></div>
-          <div class="hcard"><div class="ico">📡</div><div class="lbl">Prototyped</div><div class="val">AR Apps</div></div>
+          <div class="hcard"><div class="ico">🎮</div><div class="lbl">Shipped</div><div class="val">15+ Apps</div></div>
+          <div class="hcard"><div class="ico">⚡</div><div class="lbl">Unity</div><div class="val">7+ Yrs</div></div>
+          <div class="hcard"><div class="ico">🧊</div><div class="lbl">Systems</div><div class="val">2D &amp; 3D</div></div>
+          <div class="hcard"><div class="ico">📡</div><div class="lbl">Optimization</div><div class="val">40 to 60 FPS</div></div>
           <div class="hcard"><div class="ico">👥</div><div class="lbl">Role</div><div class="val">Team Lead</div></div>
-          <div class="hcard"><div class="ico">📱</div><div class="lbl">Platforms</div><div class="val">6+</div></div>
+          <div class="hcard"><div class="ico">📱</div><div class="lbl">Platforms</div><div class="val">Mobile + TV</div></div>
         </div>
         <div class="gold-box">
           <span class="troph">🏆</span>
-          <p>Personally applauded by the CEO for delivering an entire production app in under 8 hours — zero compromises on quality.</p>
+          <p>Production focus: full lifecycle ownership from development and testing to store deployment, performance tuning, and live production support.</p>
         </div>
       </div>
     </div>
@@ -822,11 +1007,11 @@ footer {
       <div class="sg reveal">
         <div class="sg-title">Game Development</div>
         <div class="sbars">
-          <div class="srow"><div class="slabel"><span>Unity</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="96"></div></div></div>
+          <div class="srow"><div class="slabel"><span>Unity 2D / 3D</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="96"></div></div></div>
           <div class="srow"><div class="slabel"><span>C#</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="95"></div></div></div>
-          <div class="srow"><div class="slabel"><span>2D / 3D Games</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="93"></div></div></div>
-          <div class="srow"><div class="slabel"><span>AR Foundation</span><span>Proficient</span></div><div class="strack"><div class="sfill" data-w="72"></div></div></div>
-          <div class="srow"><div class="slabel"><span>Construct 3</span><span>Experienced</span></div><div class="strack"><div class="sfill" data-w="78"></div></div></div>
+          <div class="srow"><div class="slabel"><span>Gameplay Systems</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="94"></div></div></div>
+          <div class="srow"><div class="slabel"><span>Player Mechanics</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="92"></div></div></div>
+          <div class="srow"><div class="slabel"><span>AR Foundation</span><span>Proficient</span></div><div class="strack"><div class="sfill" data-w="74"></div></div></div>
         </div>
       </div>
       <div class="sg reveal" style="transition-delay:.08s">
@@ -834,42 +1019,45 @@ footer {
         <div class="sbars">
           <div class="srow"><div class="slabel"><span>iOS (Swift / Obj-C)</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="90"></div></div></div>
           <div class="srow"><div class="slabel"><span>Android</span><span>Proficient</span></div><div class="strack"><div class="sfill" data-w="82"></div></div></div>
-          <div class="srow"><div class="slabel"><span>Android TV</span><span>Experienced</span></div><div class="strack"><div class="sfill" data-w="70"></div></div></div>
-          <div class="srow"><div class="slabel"><span>App Store Deployment</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="92"></div></div></div>
+          <div class="srow"><div class="slabel"><span>TV Platforms</span><span>Experienced</span></div><div class="strack"><div class="sfill" data-w="74"></div></div></div>
+          <div class="srow"><div class="slabel"><span>App Store / Play Store</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="92"></div></div></div>
+          <div class="srow"><div class="slabel"><span>Full App Lifecycle</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="90"></div></div></div>
         </div>
       </div>
       <div class="sg reveal" style="transition-delay:.16s">
-        <div class="sg-title">Architecture</div>
+        <div class="sg-title">Systems Architecture</div>
         <div class="sbars">
-          <div class="srow"><div class="slabel"><span>MVC / Singleton</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="90"></div></div></div>
-          <div class="srow"><div class="slabel"><span>OOP Best Practices</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="93"></div></div></div>
-          <div class="srow"><div class="slabel"><span>Prefabs &amp; Scriptable Objects</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="91"></div></div></div>
-          <div class="srow"><div class="slabel"><span>Scene Management</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="92"></div></div></div>
+          <div class="srow"><div class="slabel"><span>Object Pooling</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="94"></div></div></div>
+          <div class="srow"><div class="slabel"><span>Scalable Level Systems</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="90"></div></div></div>
+          <div class="srow"><div class="slabel"><span>Reusable Gameplay Modules</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="90"></div></div></div>
+          <div class="srow"><div class="slabel"><span>Code Reviews</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="88"></div></div></div>
         </div>
       </div>
       <div class="sg reveal" style="transition-delay:.08s">
         <div class="sg-title">Performance</div>
         <div class="sbars">
-          <div class="srow"><div class="slabel"><span>Object Pooling</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="92"></div></div></div>
-          <div class="srow"><div class="slabel"><span>Memory Management</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="90"></div></div></div>
-          <div class="srow"><div class="slabel"><span>Draw Call Optimization</span><span>Proficient</span></div><div class="strack"><div class="sfill" data-w="85"></div></div></div>
-          <div class="srow"><div class="slabel"><span>Asset Optimization</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="88"></div></div></div>
+          <div class="srow"><div class="slabel"><span>FPS Optimization</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="92"></div></div></div>
+          <div class="srow"><div class="slabel"><span>Memory Reduction</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="90"></div></div></div>
+          <div class="srow"><div class="slabel"><span>Low-End Device Tuning</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="90"></div></div></div>
+          <div class="srow"><div class="slabel"><span>100+ Active Object Handling</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="88"></div></div></div>
         </div>
       </div>
       <div class="sg reveal" style="transition-delay:.16s">
-        <div class="sg-title">Tools &amp; DevOps</div>
+        <div class="sg-title">Services &amp; Monetization</div>
         <div class="sbars">
-          <div class="srow"><div class="slabel"><span>Xcode</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="90"></div></div></div>
-          <div class="srow"><div class="slabel"><span>Android Studio</span><span>Proficient</span></div><div class="strack"><div class="sfill" data-w="78"></div></div></div>
-          <div class="srow"><div class="slabel"><span>GitHub / Bitbucket</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="88"></div></div></div>
+          <div class="srow"><div class="slabel"><span>AdMob</span><span>Experienced</span></div><div class="strack"><div class="sfill" data-w="82"></div></div></div>
+          <div class="srow"><div class="slabel"><span>Firebase Analytics</span><span>Experienced</span></div><div class="strack"><div class="sfill" data-w="80"></div></div></div>
+          <div class="srow"><div class="slabel"><span>Firebase OAuth</span><span>Experienced</span></div><div class="strack"><div class="sfill" data-w="76"></div></div></div>
+          <div class="srow"><div class="slabel"><span>Firebase Cloud Messaging</span><span>Experienced</span></div><div class="strack"><div class="sfill" data-w="78"></div></div></div>
         </div>
       </div>
       <div class="sg reveal" style="transition-delay:.24s">
-        <div class="sg-title">Web Technologies</div>
+        <div class="sg-title">Tools &amp; Workflow</div>
         <div class="sbars">
-          <div class="srow"><div class="slabel"><span>HTML5 / CSS</span><span>Proficient</span></div><div class="strack"><div class="sfill" data-w="75"></div></div></div>
-          <div class="srow"><div class="slabel"><span>JavaScript</span><span>Familiar</span></div><div class="strack"><div class="sfill" data-w="65"></div></div></div>
-          <div class="srow"><div class="slabel"><span>SQLite / Core Data</span><span>Proficient</span></div><div class="strack"><div class="sfill" data-w="72"></div></div></div>
+          <div class="srow"><div class="slabel"><span>Git</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="88"></div></div></div>
+          <div class="srow"><div class="slabel"><span>Xcode</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="90"></div></div></div>
+          <div class="srow"><div class="slabel"><span>Android Studio</span><span>Proficient</span></div><div class="strack"><div class="sfill" data-w="78"></div></div></div>
+          <div class="srow"><div class="slabel"><span>Testing &amp; Deployment</span><span>Expert</span></div><div class="strack"><div class="sfill" data-w="88"></div></div></div>
         </div>
       </div>
     </div>
@@ -886,29 +1074,28 @@ footer {
     <div class="timeline">
       <div class="titem reveal">
         <div class="tdot active"></div>
-        <p class="tperiod">Jan 2014 – Present &nbsp;·&nbsp; 10.5 Years</p>
+        <p class="tperiod">7+ Years Unity &nbsp;·&nbsp; Senior Role</p>
         <h3 class="tco">Tigris Entertainment Pvt Ltd</h3>
-        <p class="trole">Senior Software Developer &amp; Team Lead</p>
+        <p class="trole">Senior Developer / Team Lead</p>
         <ul class="tlist">
-          <li>Direct technical contributions — writing, debugging, reviewing and deploying production code in Objective-C, C# and Swift</li>
-          <li>Provided technical guidance, code reviews, and mentorship to team members</li>
-          <li>Led technical design of games and applications; participated in system architecture decisions</li>
-          <li>Designed and implemented game mechanics, UI/UX, and interactive elements improving engagement and retention</li>
-          <li>Collaborated closely with clients to gather requirements and deliver solutions that exceeded expectations</li>
-          <li>Deployed and maintained Unity apps across Android, iOS, and Android TV with platform-specific builds</li>
-          <li>Shipped 20+ games and apps across the Chhota Bheem IP and original titles</li>
+          <li>Developed and shipped 15+ mobile games and apps across Android, iOS, and TV platforms</li>
+          <li>Designed gameplay systems, UI flows, player mechanics, progression systems, and reusable level architecture</li>
+          <li>Improved FPS from ~40 to 60 on low-end devices through profiling, optimization, and object pooling</li>
+          <li>Handled 100+ active objects using pooling and reduced memory usage by ~20-30%</li>
+          <li>Led the development team, conducted code reviews, and enforced engineering best practices</li>
+          <li>Managed the full production lifecycle: development, testing, deployment, and production support</li>
         </ul>
       </div>
       <div class="titem reveal" style="transition-delay:.15s">
         <div class="tdot"></div>
-        <p class="tperiod">Mid 2013 – Dec 2013 &nbsp;·&nbsp; 6 Months</p>
-        <h3 class="tco">Mathema Technologies Pvt Ltd</h3>
-        <p class="trole">Software Developer</p>
+        <p class="tperiod">Earlier Role &nbsp;·&nbsp; Native Mobile Foundation</p>
+        <h3 class="tco">Tigris Entertainment Pvt Ltd</h3>
+        <p class="trole">iOS Developer</p>
         <ul class="tlist">
-          <li>Partnered with clients to define mobility requirements and understand success metrics</li>
-          <li>Led mobile projects from concept to implementation including architectural decisions</li>
-          <li>Worked cross-functionally with Team Leads, Designers, and QA engineers</li>
-          <li>Delivered mobile solutions with a focus on world-class user experiences</li>
+          <li>Developed native iOS applications using Swift and Objective-C</li>
+          <li>Implemented UI/UX components and handled full app lifecycle responsibilities</li>
+          <li>Managed App Store deployment and distribution workflows</li>
+          <li>Built a strong foundation in mobile architecture, platform constraints, and performance</li>
         </ul>
       </div>
     </div>
@@ -921,35 +1108,155 @@ footer {
     <div class="reveal">
       <p class="sec-label">// 04 — Projects</p>
       <h2 class="sec-title">Game &amp; App<br>Portfolio</h2>
+      <p class="project-kicker"><strong>Selected shipped work with gameplay videos.</strong> Video-backed projects are highlighted so recruiters can quickly see the actual player experience, production quality, and engineering range behind each build.</p>
     </div>
     <div class="pgrid">
 
       <!-- PS/AS SVG helpers defined inline per card -->
 
       <!-- 1. Green Gold TV Live Stream (FIRST) -->
-      <div class="pcard reveal">
+      <div class="pcard reveal has-video">
+        <div class="pmedia" data-video="5-UFwaUTVjM" data-title="Green Gold TV Live Stream app demo">
+          <button class="video-thumb" type="button" aria-label="Play Green Gold TV Live Stream app demo">
+            <img src="https://img.youtube.com/vi/5-UFwaUTVjM/hqdefault.jpg" alt="" loading="lazy">
+            <span class="play-icon"></span><span class="watch-label">Play Demo</span>
+          </button>
+        </div>
         <div class="pcard-head"><h3 class="pname">Green Gold TV Live Stream</h3><span class="tbadge bn">Entertainment</span></div>
         <p class="pdesc">Official Green Gold Animation streaming app — live TV, episodes, and exclusive content for Bheem fans worldwide.</p>
         <p class="pmeta">Streaming App &nbsp;·&nbsp; <span>Tigris Entertainment</span></p>
+        <div class="ptech"><span>Live Streaming</span><span>iOS / Android</span><span>Production App</span></div>
         <div class="store-links">
           <a href="https://play.google.com/store/apps/details?id=com.greengold.greengoldfast&hl=en_IN" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
           <a href="https://apps.apple.com/in/app/green-gold-tv-live-stream-app/id6749145763" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+          <a href="https://www.youtube.com/watch?v=5-UFwaUTVjM" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-yt"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Video</a>
         </div>
       </div>
 
+
       <!-- 2. Learn With Bheem (SECOND) -->
-      <div class="pcard reveal" style="transition-delay:.05s">
+      <div class="pcard reveal has-video" style="transition-delay:.05s">
+        <div class="pmedia" data-video="k_VBIv25Eac" data-title="Learn With Bheem kids app demo">
+          <button class="video-thumb" type="button" aria-label="Play Learn With Bheem kids app demo">
+            <img src="https://img.youtube.com/vi/k_VBIv25Eac/hqdefault.jpg" alt="" loading="lazy">
+            <span class="play-icon"></span><span class="watch-label">Play Demo</span>
+          </button>
+        </div>
         <div class="pcard-head"><h3 class="pname">Learn With Bheem</h3><span class="tbadge be">Educational</span></div>
         <p class="pdesc">Kids educational game blending fun 2D gameplay with curriculum-aligned learning challenges.</p>
         <p class="pmeta">2D Game &nbsp;·&nbsp; <span>Team of 4</span></p>
+        <div class="ptech"><span>Mini-Games</span><span>Kids UX</span><span>Reusable Modules</span></div>
         <div class="store-links">
           <a href="https://play.google.com/store/apps/details?id=com.greengold.learnwithbheem" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
           <a href="https://apps.apple.com/in/app/learn-with-bheem-kids-app/id6742449857" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+          <a href="https://www.youtube.com/watch?v=k_VBIv25Eac" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-yt"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Video</a>
         </div>
       </div>
 
+
+      <!-- 4. Bheem Vs Super Villains -->
+      <div class="pcard reveal has-video">
+        <div class="pmedia" data-video="3_W0EmplDaE" data-title="Bheem Vs Super Villains gameplay demo">
+          <button class="video-thumb" type="button" aria-label="Play Bheem Vs Super Villains gameplay demo">
+            <img src="https://img.youtube.com/vi/3_W0EmplDaE/hqdefault.jpg" alt="" loading="lazy">
+            <span class="play-icon"></span><span class="watch-label">Play Demo</span>
+          </button>
+        </div>
+        <div class="pcard-head"><h3 class="pname">Bheem Vs Super Villains</h3><span class="tbadge bg">2D Game</span></div>
+        <p class="pdesc">High-energy action game pitting Bheem against iconic villains with dynamic combat mechanics.</p>
+        <p class="pmeta">2D Action &nbsp;·&nbsp; <span>Team of 2</span></p>
+        <div class="ptech"><span>Combat Systems</span><span>Enemy AI</span><span>2D Action</span></div>
+        <div class="store-links">
+          <a href="https://play.google.com/store/apps/details?id=com.greengold.HeroAdventures" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
+          <a href="https://apps.apple.com/in/app/bheem-vs-super-villains/id6447617859" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+          <a href="https://www.youtube.com/watch?v=3_W0EmplDaE" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-yt"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Video</a>
+        </div>
+      </div>
+
+
+      <!-- 5. Bheem Galaxy Rush -->
+      <div class="pcard reveal has-video" style="transition-delay:.05s">
+        <div class="pmedia" data-video="lJ21ulVVwzI" data-title="Bheem Galaxy Rush gameplay demo">
+          <button class="video-thumb" type="button" aria-label="Play Bheem Galaxy Rush gameplay demo">
+            <img src="https://img.youtube.com/vi/lJ21ulVVwzI/hqdefault.jpg" alt="" loading="lazy">
+            <span class="play-icon"></span><span class="watch-label">Play Demo</span>
+          </button>
+        </div>
+        <div class="pcard-head"><h3 class="pname">Bheem Galaxy Rush</h3><span class="tbadge bg">2D Game</span></div>
+        <p class="pdesc">Endless adventure game with fast-paced progression and galactic-themed environments.</p>
+        <p class="pmeta">2D Adventure &nbsp;·&nbsp; <span>Team of 2</span></p>
+        <div class="ptech"><span>Progression</span><span>Object Pooling</span><span>Level Systems</span></div>
+        <div class="store-links">
+          <a href="https://play.google.com/store/apps/details?id=com.greengold.sbgalaxyrush" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
+          <a href="https://apps.apple.com/in/app/bheem-galaxy-rush/id6444507771" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+          <a href="https://www.youtube.com/watch?v=lJ21ulVVwzI" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-yt"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Video</a>
+        </div>
+      </div>
+
+
+      <!-- 7. Shoot The Leyaks -->
+      <div class="pcard reveal has-video">
+        <div class="pmedia" data-video="7jzHMqUefh4" data-title="Shoot The Leyaks gameplay demo">
+          <button class="video-thumb" type="button" aria-label="Play Shoot The Leyaks gameplay demo">
+            <img src="https://img.youtube.com/vi/7jzHMqUefh4/hqdefault.jpg" alt="" loading="lazy">
+            <span class="play-icon"></span><span class="watch-label">Play Demo</span>
+          </button>
+        </div>
+        <div class="pcard-head"><h3 class="pname">Shoot The Leyaks</h3><span class="tbadge bg">2D Game</span></div>
+        <p class="pdesc">Precision arrow shooting game with enemy wave mechanics and escalating power-ups.</p>
+        <p class="pmeta">2D Shooting &nbsp;·&nbsp; <span>Team of 2</span></p>
+        <div class="ptech"><span>Physics Aiming</span><span>Wave Logic</span><span>Responsive Controls</span></div>
+        <div class="store-links">
+          <a href="https://play.google.com/store/apps/details?id=com.greengold.ShootLayeks" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
+          <a href="https://apps.apple.com/in/app/chhota-bheem-archery-in-mexico/id1619295155" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+          <a href="https://www.youtube.com/watch?v=7jzHMqUefh4" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-yt"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Video</a>
+        </div>
+      </div>
+
+
+      <!-- 8. Play With Mighty Little Bheem -->
+      <div class="pcard reveal has-video" style="transition-delay:.05s">
+        <div class="pmedia" data-video="xh1MAMDmBKQ" data-title="Play With Mighty Little Bheem app demo">
+          <button class="video-thumb" type="button" aria-label="Play Play With Mighty Little Bheem app demo">
+            <img src="https://img.youtube.com/vi/xh1MAMDmBKQ/hqdefault.jpg" alt="" loading="lazy">
+            <span class="play-icon"></span><span class="watch-label">Play Demo</span>
+          </button>
+        </div>
+        <div class="pcard-head"><h3 class="pname">Play With Mighty Little Bheem</h3><span class="tbadge be">Educational</span></div>
+        <p class="pdesc">Toddler-friendly entertainment and learning app based on the Netflix original series.</p>
+        <p class="pmeta">2D Entertainment &nbsp;·&nbsp; <span>Team of 2</span></p>
+        <div class="ptech"><span>Kids UX</span><span>Mini Activities</span><span>Mobile Polish</span></div>
+        <div class="store-links">
+          <a href="https://play.google.com/store/apps/details?id=com.GreenGoldAnimationPvtLtd.MasterApp" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
+          <a href="https://apps.apple.com/in/app/play-with-mighty-little-bheem/id1543145665" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+          <a href="https://www.youtube.com/watch?v=xh1MAMDmBKQ" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-yt"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Video</a>
+        </div>
+      </div>
+
+
+      <!-- 9. MLB Color and Puzzles -->
+      <div class="pcard reveal has-video" style="transition-delay:.1s">
+        <div class="pmedia" data-video="4D6r8c-GmmY" data-title="MLB Color and Puzzles gameplay demo">
+          <button class="video-thumb" type="button" aria-label="Play MLB Color and Puzzles gameplay demo">
+            <img src="https://img.youtube.com/vi/4D6r8c-GmmY/hqdefault.jpg" alt="" loading="lazy">
+            <span class="play-icon"></span><span class="watch-label">Play Demo</span>
+          </button>
+        </div>
+        <div class="pcard-head"><h3 class="pname">MLB Color and Puzzles</h3><span class="tbadge be">Educational</span></div>
+        <p class="pdesc">Coloring and puzzle game combining creativity with cognitive skill-building for young players.</p>
+        <p class="pmeta">2D Educational &nbsp;·&nbsp; <span>Team of 2</span></p>
+        <div class="ptech"><span>Coloring Tools</span><span>Puzzles</span><span>Child-Friendly UI</span></div>
+        <div class="store-links">
+          <a href="https://play.google.com/store/apps/details?id=com.greengold.mlbcp" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
+          <a href="https://apps.apple.com/in/app/mlb-color-and-puzzles/id1543152209" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+          <a href="https://www.youtube.com/watch?v=4D6r8c-GmmY" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-yt"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Video</a>
+        </div>
+      </div>
+
+
       <!-- 3. Chhota Bheem Hexa Sort (THIRD) -->
       <div class="pcard reveal" style="transition-delay:.1s">
+        <div class="pmedia pmedia-static" data-label="HEXA"><span class="watch-label">Puzzle Systems</span></div>
         <div class="pcard-head"><h3 class="pname">Chhota Bheem Hexa Sort</h3><span class="tbadge bg">Casual Game</span></div>
         <p class="pdesc">Fun hexa-sorting casual puzzle game — stack and sort colourful hexagons in Bheem's world.</p>
         <p class="pmeta">Casual / Puzzle &nbsp;·&nbsp; <span>Tigris Entertainment</span></p>
@@ -959,30 +1266,10 @@ footer {
         </div>
       </div>
 
-      <!-- 4. Bheem Vs Super Villains -->
-      <div class="pcard reveal">
-        <div class="pcard-head"><h3 class="pname">Bheem Vs Super Villains</h3><span class="tbadge bg">2D Game</span></div>
-        <p class="pdesc">High-energy action game pitting Bheem against iconic villains with dynamic combat mechanics.</p>
-        <p class="pmeta">2D Action &nbsp;·&nbsp; <span>Team of 2</span></p>
-        <div class="store-links">
-          <a href="https://play.google.com/store/apps/details?id=com.greengold.HeroAdventures" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
-          <a href="https://apps.apple.com/in/app/bheem-vs-super-villains/id6447617859" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
-        </div>
-      </div>
-
-      <!-- 5. Bheem Galaxy Rush -->
-      <div class="pcard reveal" style="transition-delay:.05s">
-        <div class="pcard-head"><h3 class="pname">Bheem Galaxy Rush</h3><span class="tbadge bg">2D Game</span></div>
-        <p class="pdesc">Endless adventure game with fast-paced progression and galactic-themed environments.</p>
-        <p class="pmeta">2D Adventure &nbsp;·&nbsp; <span>Team of 2</span></p>
-        <div class="store-links">
-          <a href="https://play.google.com/store/apps/details?id=com.greengold.sbgalaxyrush" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
-          <a href="https://apps.apple.com/in/app/bheem-galaxy-rush/id6444507771" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
-        </div>
-      </div>
 
       <!-- 6. Chhota Bheem Vs Kirmada -->
       <div class="pcard reveal" style="transition-delay:.1s">
+        <div class="pmedia pmedia-static" data-label="3D"><span class="watch-label">Shooter Systems</span></div>
         <div class="pcard-head"><h3 class="pname">Chhota Bheem Vs Kirmada</h3><span class="tbadge bg">3D Game</span></div>
         <p class="pdesc">Full 3D third-person shooter — the most technically ambitious title in the Bheem franchise.</p>
         <p class="pmeta">3D Shooter &nbsp;·&nbsp; <span>Team of 2</span></p>
@@ -992,41 +1279,10 @@ footer {
         </div>
       </div>
 
-      <!-- 7. Shoot The Leyaks -->
-      <div class="pcard reveal">
-        <div class="pcard-head"><h3 class="pname">Shoot The Leyaks</h3><span class="tbadge bg">2D Game</span></div>
-        <p class="pdesc">Precision arrow shooting game with enemy wave mechanics and escalating power-ups.</p>
-        <p class="pmeta">2D Shooting &nbsp;·&nbsp; <span>Team of 2</span></p>
-        <div class="store-links">
-          <a href="https://play.google.com/store/apps/details?id=com.greengold.ShootLayeks" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
-          <a href="https://apps.apple.com/in/app/chhota-bheem-archery-in-mexico/id1619295155" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
-        </div>
-      </div>
-
-      <!-- 8. Play With Mighty Little Bheem -->
-      <div class="pcard reveal" style="transition-delay:.05s">
-        <div class="pcard-head"><h3 class="pname">Play With Mighty Little Bheem</h3><span class="tbadge be">Educational</span></div>
-        <p class="pdesc">Toddler-friendly entertainment and learning app based on the Netflix original series.</p>
-        <p class="pmeta">2D Entertainment &nbsp;·&nbsp; <span>Team of 2</span></p>
-        <div class="store-links">
-          <a href="https://play.google.com/store/apps/details?id=com.GreenGoldAnimationPvtLtd.MasterApp" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
-          <a href="https://apps.apple.com/in/app/play-with-mighty-little-bheem/id1543145665" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
-        </div>
-      </div>
-
-      <!-- 9. MLB Color and Puzzles -->
-      <div class="pcard reveal" style="transition-delay:.1s">
-        <div class="pcard-head"><h3 class="pname">MLB Color and Puzzles</h3><span class="tbadge be">Educational</span></div>
-        <p class="pdesc">Coloring and puzzle game combining creativity with cognitive skill-building for young players.</p>
-        <p class="pmeta">2D Educational &nbsp;·&nbsp; <span>Team of 2</span></p>
-        <div class="store-links">
-          <a href="https://play.google.com/store/apps/details?id=com.greengold.mlbcp" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-ps"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.199a1 1 0 010 1.984L15.396 12l2.302-2.302zm-8.607-1.316L19.828 2.657 17.201 5.284l-8.11 8.11z"/></svg>Play Store</a>
-          <a href="https://apps.apple.com/in/app/mlb-color-and-puzzles/id1543152209" target="_blank" rel="noopener noreferrer" class="sbtn sbtn-as"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
-        </div>
-      </div>
 
       <!-- 10. CB Himalayan Adventure -->
       <div class="pcard reveal">
+        <div class="pmedia pmedia-static" data-label="CB"><span class="watch-label">Movie App</span></div>
         <div class="pcard-head"><h3 class="pname">CB Himalayan Adventure</h3><span class="tbadge bn">Entertainment</span></div>
         <p class="pdesc">Movie companion app with interactive learning content tied to the Chhota Bheem film.</p>
         <p class="pmeta">Movie App &nbsp;·&nbsp; <span>Solo</span></p>
@@ -1035,8 +1291,10 @@ footer {
         </div>
       </div>
 
+
       <!-- 11. Chhota Piano -->
       <div class="pcard reveal" style="transition-delay:.05s">
+        <div class="pmedia pmedia-static" data-label="PIANO"><span class="watch-label">Audio App</span></div>
         <div class="pcard-head"><h3 class="pname">Chhota Piano</h3><span class="tbadge bn">Entertainment</span></div>
         <p class="pdesc">Interactive musical instrument app for children with Bheem-themed sounds and melodies.</p>
         <p class="pmeta">Musical App &nbsp;·&nbsp; <span>Solo</span></p>
@@ -1045,8 +1303,10 @@ footer {
         </div>
       </div>
 
+
       <!-- 12. Chhota Bheem Shop -->
       <div class="pcard reveal" style="transition-delay:.1s">
+        <div class="pmedia pmedia-static" data-label="SHOP"><span class="watch-label">Commerce App</span></div>
         <div class="pcard-head"><h3 class="pname">Chhota Bheem Shop</h3><span class="tbadge bc">E-Commerce</span></div>
         <p class="pdesc">Full-featured e-commerce mobile app for the Bheem merchandise ecosystem. Solo end-to-end build.</p>
         <p class="pmeta">E-Commerce &nbsp;·&nbsp; <span>Solo</span></p>
@@ -1055,8 +1315,10 @@ footer {
         </div>
       </div>
 
+
       <!-- 13. Quiz Like KBC With Bheem -->
       <div class="pcard reveal">
+        <div class="pmedia pmedia-static" data-label="QUIZ"><span class="watch-label">Trivia Systems</span></div>
         <div class="pcard-head"><h3 class="pname">Quiz Like KBC With Bheem</h3><span class="tbadge be">Educational</span></div>
         <p class="pdesc">KBC-style trivia quiz app with lifelines, point multipliers, and Bheem-universe questions.</p>
         <p class="pmeta">Educational &nbsp;·&nbsp; <span>Solo</span></p>
@@ -1066,8 +1328,10 @@ footer {
         </div>
       </div>
 
+
       <!-- 14. Word Puzzles With Bheem -->
       <div class="pcard reveal" style="transition-delay:.05s">
+        <div class="pmedia pmedia-static" data-label="WORD"><span class="watch-label">Word Game</span></div>
         <div class="pcard-head"><h3 class="pname">Word Puzzles With Bheem</h3><span class="tbadge be">Educational</span></div>
         <p class="pdesc">Word-building puzzle game developing vocabulary and spelling skills for young learners.</p>
         <p class="pmeta">Puzzle App &nbsp;·&nbsp; <span>Solo</span></p>
@@ -1076,8 +1340,10 @@ footer {
         </div>
       </div>
 
+
       <!-- 15. Sliding Puzzles With Bheem -->
       <div class="pcard reveal" style="transition-delay:.1s">
+        <div class="pmedia pmedia-static" data-label="SLIDE"><span class="watch-label">Tile Puzzle</span></div>
         <div class="pcard-head"><h3 class="pname">Sliding Puzzles With Bheem</h3><span class="tbadge be">Educational</span></div>
         <p class="pdesc">Classic tile-slide puzzle mechanics with Bheem imagery and increasing difficulty levels.</p>
         <p class="pmeta">Puzzle App &nbsp;·&nbsp; <span>Solo</span></p>
@@ -1086,8 +1352,10 @@ footer {
         </div>
       </div>
 
+
       <!-- 16. Quick Math With Bheem -->
       <div class="pcard reveal">
+        <div class="pmedia pmedia-static" data-label="MATH"><span class="watch-label">Timed Game</span></div>
         <div class="pcard-head"><h3 class="pname">Quick Math With Bheem</h3><span class="tbadge be">Educational</span></div>
         <p class="pdesc">Timed arithmetic challenges designed to build mental math speed in a fun gamified format.</p>
         <p class="pmeta">Educational &nbsp;·&nbsp; <span>Solo</span></p>
@@ -1096,8 +1364,10 @@ footer {
         </div>
       </div>
 
+
       <!-- 17. Christmas With Bheem -->
       <div class="pcard reveal" style="transition-delay:.05s">
+        <div class="pmedia pmedia-static" data-label="XMAS"><span class="watch-label">Seasonal App</span></div>
         <div class="pcard-head"><h3 class="pname">Christmas With Bheem</h3><span class="tbadge bn">Entertainment</span></div>
         <p class="pdesc">Festive seasonal entertainment app with holiday-themed mini activities and surprises.</p>
         <p class="pmeta">Entertainment &nbsp;·&nbsp; <span>Solo</span></p>
@@ -1106,8 +1376,10 @@ footer {
         </div>
       </div>
 
+
       <!-- 18. Learn Hindi Alphabets -->
       <div class="pcard reveal" style="transition-delay:.1s">
+        <div class="pmedia pmedia-static" data-label="HINDI"><span class="watch-label">Learning App</span></div>
         <div class="pcard-head"><h3 class="pname">Learn Hindi Alphabets</h3><span class="tbadge be">Educational</span></div>
         <p class="pdesc">Hindi alphabet learning with audio pronunciation, tracing, and character recognition games.</p>
         <p class="pmeta">Educational &nbsp;·&nbsp; <span>Solo</span></p>
@@ -1116,8 +1388,10 @@ footer {
         </div>
       </div>
 
+
       <!-- 19. CB Diwali Dhamaka -->
       <div class="pcard reveal">
+        <div class="pmedia pmedia-static" data-label="DIWALI"><span class="watch-label">Festival App</span></div>
         <div class="pcard-head"><h3 class="pname">CB Diwali Dhamaka</h3><span class="tbadge bn">Entertainment</span></div>
         <p class="pdesc">Festive Diwali app with virtual firecracker experiences and celebratory animations.</p>
         <p class="pmeta">Entertainment &nbsp;·&nbsp; <span>Solo</span></p>
@@ -1126,8 +1400,10 @@ footer {
         </div>
       </div>
 
+
       <!-- 20. Chhota Bheem 2048 -->
       <div class="pcard reveal" style="transition-delay:.05s">
+        <div class="pmedia pmedia-static" data-label="2048"><span class="watch-label">Puzzle Logic</span></div>
         <div class="pcard-head"><h3 class="pname">Chhota Bheem 2048</h3><span class="tbadge bg">2D Game</span></div>
         <p class="pdesc">Addictive tile-merging puzzle with Bheem theming and smooth swipe mechanics.</p>
         <p class="pmeta">Puzzle Game &nbsp;·&nbsp; <span>Solo</span></p>
@@ -1136,8 +1412,10 @@ footer {
         </div>
       </div>
 
+
       <!-- 21 -->
       <div class="pcard reveal" style="transition-delay:.1s; border-color: rgba(168,85,247,0.25);">
+        <div class="pmedia pmedia-static" data-label="AR"><span class="watch-label">R&amp;D Prototype</span></div>
         <div class="pcard-head">
           <h3 class="pname">AR Experience Demo</h3>
           <span class="tbadge ba">AR Prototype</span>
@@ -1146,6 +1424,7 @@ footer {
         <p class="pmeta">AR / POC &nbsp;·&nbsp; <span>Personal Project</span></p>
         <div class="store-links"><span class="soon">Personal prototype</span></div>
       </div>
+
 
     </div>
   </div>
@@ -1159,19 +1438,19 @@ footer {
       <h2 class="sec-title">Stats &amp;<br>Recognition</h2>
     </div>
     <div class="stats-row">
-      <div class="scard reveal"><div class="snum" data-target="11">0</div><div class="slbl2">Years Experience</div></div>
-      <div class="scard reveal" style="transition-delay:.08s"><div class="snum" data-target="22">0</div><div class="slbl2">Projects Shipped</div></div>
-      <div class="scard reveal" style="transition-delay:.16s"><div class="snum" data-target="2">0</div><div class="slbl2">Companies</div></div>
-      <div class="scard reveal" style="transition-delay:.24s"><div class="snum" data-target="6">0</div><div class="slbl2">Platforms Supported</div></div>
+      <div class="scard reveal"><div class="snum" data-target="12">0</div><div class="slbl2">Years Total Experience</div></div>
+      <div class="scard reveal" style="transition-delay:.08s"><div class="snum" data-target="7">0</div><div class="slbl2">Years Unity Experience</div></div>
+      <div class="scard reveal" style="transition-delay:.16s"><div class="snum" data-target="15">0</div><div class="slbl2">Games &amp; Apps Shipped</div></div>
+      <div class="scard reveal" style="transition-delay:.24s"><div class="snum" data-target="100">0</div><div class="slbl2">Active Objects Pooled</div></div>
     </div>
     <div class="gold-callouts">
       <div class="gold-box reveal">
         <span class="troph">🏆</span>
-        <p><strong>CEO Recognition Award</strong> — Personally applauded by the CEO for delivering an entire production application in under 8 hours, setting a benchmark for the team.</p>
+        <p><strong>Performance Impact</strong> — Improved gameplay from ~40 FPS to 60 FPS on low-end devices and reduced memory usage by ~20-30%.</p>
       </div>
       <div class="gold-box reveal" style="transition-delay:.1s">
         <span class="troph">🥇</span>
-        <p><strong>First App Prize</strong> — Won an internal company competition for publishing a fully functional iOS app on the App Store within just 2 months, during the internship learning period.</p>
+        <p><strong>Production Ownership</strong> — Managed development, testing, deployment, and production support across Android, iOS, and TV platforms.</p>
       </div>
     </div>
   </div>
@@ -1205,7 +1484,7 @@ footer {
       <div class="reveal">
         <div class="contact-info">
           <h2>Let's Build<br><span>Something Great</span></h2>
-          <p>Open to senior Unity roles, team lead positions, and consulting. Based in Hyderabad — available globally.</p>
+          <p>Open to Senior Unity Game Developer and Team Lead roles focused on gameplay systems, performance optimization, mobile games, and live production support. Based in Hyderabad.</p>
           <a href="mailto:srinivas.jagata@gmail.com" class="clink">
             <span class="cico">📧</span>
             <div class="cinf"><small>Email</small><span>srinivas.jagata@gmail.com</span></div>
@@ -1219,9 +1498,9 @@ footer {
             <div class="cinf"><small>Location</small><span>Hyderabad, India</span></div>
           </div>
           <div class="soc-links">
-            <a href="#" class="soc-btn">GitHub</a>
-            <a href="#" class="soc-btn">LinkedIn</a>
-            <a href="#" class="soc-btn">Itch.io</a>
+            <a href="https://github.com/seenubaabu" target="_blank" rel="noopener noreferrer" class="soc-btn">GitHub</a>
+            <a href="https://www.linkedin.com/in/srinivas-jagata/" target="_blank" rel="noopener noreferrer" class="soc-btn">LinkedIn</a>
+            <a href="https://seenubaabu.github.io/srinivas_portfolio" target="_blank" rel="noopener noreferrer" class="soc-btn">Portfolio</a>
           </div>
         </div>
       </div>
@@ -1229,7 +1508,7 @@ footer {
         <div class="fg"><label>Name</label><input type="text" placeholder="Your name"></div>
         <div class="fg"><label>Email</label><input type="email" placeholder="your@email.com"></div>
         <div class="fg"><label>Message</label><textarea placeholder="Tell me about your project..."></textarea></div>
-        <button class="fsub" id="fsub">Send Message</button>
+        <button class="fsub" id="fsub">Send Email</button>
       </div>
     </div>
   </div>
@@ -1240,7 +1519,7 @@ footer {
   <p class="ft">Built with passion by Srinivas Jagata &copy; 2026</p>
   <div class="fu">
     <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><polygon points="10,1 19,6 19,14 10,19 1,14 1,6" fill="none" stroke="rgba(0,229,255,0.4)" stroke-width="1"/><text x="10" y="13.5" text-anchor="middle" font-size="7" fill="rgba(0,229,255,0.55)" font-family="monospace" font-weight="bold">U</text></svg>
-    Powered by Unity &amp; Passion
+    Unity &amp; C# Gameplay Systems
   </div>
 </footer>
 
@@ -1343,7 +1622,7 @@ footer {
   })();
 
   // ── Typewriter ──
-  const phrases = ['Unity Developer','Senior Game Engineer','Team Lead','Mobile Game Expert','AR Developer'];
+  const phrases = ['Senior Unity Game Developer','Gameplay Systems Engineer','Performance Optimizer','Mobile Game Team Lead','Unity 2D/3D Developer'];
   const tw = document.getElementById('typewriter');
   let pi=0, ci=0, deleting=false;
 
@@ -1413,11 +1692,35 @@ footer {
     document.getElementById('navLinks').classList.toggle('open');
   });
 
+  // ── Lazy embedded project videos ──
+  document.querySelectorAll('.pmedia[data-video]').forEach(media => {
+    const btn = media.querySelector('.video-thumb');
+    if(!btn) return;
+    btn.addEventListener('click', () => {
+      const id = media.dataset.video;
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
+      iframe.title = media.dataset.title || 'Project video demo';
+      iframe.loading = 'lazy';
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      media.replaceChildren(iframe);
+    });
+  });
+
   // ── Form ──
   document.getElementById('fsub').addEventListener('click', function(){
-    this.textContent = '✓ Message Sent!';
+    const form = this.closest('.cform');
+    const name = form.querySelector('input[type="text"]').value.trim();
+    const email = form.querySelector('input[type="email"]').value.trim();
+    const message = form.querySelector('textarea').value.trim();
+    const subject = encodeURIComponent('Portfolio inquiry for Srinivas Jagata');
+    const body = encodeURIComponent(`Name: ${name || '-'}\nEmail: ${email || '-'}\n\n${message || 'Hi Srinivas,'}`);
+    window.location.href = `mailto:srinivas.jagata@gmail.com?subject=${subject}&body=${body}`;
+    this.textContent = 'Opening Email...';
     this.style.background = 'rgba(0,229,255,0.12)';
-    setTimeout(()=>{ this.textContent='Send Message'; this.style.background=''; }, 3000);
+    setTimeout(()=>{ this.textContent='Send Email'; this.style.background=''; }, 3000);
   });
 
 })();
